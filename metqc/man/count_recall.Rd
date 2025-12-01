@@ -17,7 +17,3 @@ Numeric vector
 \description{
 Calculate Recall of DAMs
 }
-\examples{
-count_recall(dt = sample_data, metadata = sample_metadata)
-
-}

@@ -19,7 +19,3 @@ Numeric vector
 \description{
 Plot PCA and calculate SNR based on the first two principal componants of PCA.
 }
-\examples{
-count_snr(dt = sample_data, metadata = sample_metadata)
-
-}

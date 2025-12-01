@@ -19,7 +19,3 @@ Numeric vector
 \description{
 Calculate correlation to reference datasets and plot related scatter plot
 }
-\examples{
-count_rc(dt = sample_data, metadata = sample_metadata)
-
-}

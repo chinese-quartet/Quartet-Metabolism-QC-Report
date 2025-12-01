@@ -19,7 +19,3 @@ Numeric vector
 \description{
 Get information of overall performance with historical data.
 }
-\examples{
-get_performance(dt_file = sample_data, metadata_file = sample_metadata)
-
-}

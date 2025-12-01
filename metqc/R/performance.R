@@ -11,9 +11,6 @@
 #' @importFrom data.table data.table
 #' @importFrom data.table rbindlist
 #'
-#' @examples
-#' get_performance(dt_file = sample_data, metadata_file = sample_metadata)
-#'
 #' @export
 get_performance <- function(dt_file, metadata_file, output_dir = NULL) {
   dt <- map_hmdb_id(dt_file)
@@ -171,8 +168,6 @@ get_performance <- function(dt_file, metadata_file, output_dir = NULL) {
 #' @importFrom ggplot2 scale_color_manual
 #' @importFrom ggplot2 ggsave
 #' @importFrom ggplot2 element_text
-#' @examples
-#' count_snr(dt = sample_data, metadata = sample_metadata)
 #'
 #' @export
 count_snr <- function(dt_file, metadata_file, output_dir = NULL) {
@@ -284,9 +279,6 @@ count_snr <- function(dt_file, metadata_file, output_dir = NULL) {
 #' @importFrom ggplot2 element_text
 #' @importFrom stringr str_split_fixed
 #'
-#' @examples
-#' count_rc(dt = sample_data, metadata = sample_metadata)
-#'
 #' @export
 count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   dt <- map_hmdb_id(dt_file)
@@ -386,9 +378,6 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
 #' @importFrom data.table copy
 #' @importFrom data.table :=
 #' @importFrom data.table setDT
-#'
-#' @examples
-#' count_recall(dt = sample_data, metadata = sample_metadata)
 #'
 #' @export
 count_recall <- function(dt_file, metadata_file) {

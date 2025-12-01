@@ -1,4 +1,3 @@
-# MetQC
-Calculate Quartet metabolomics metrics and generate report
+# Quartet Metabolism QC
 
-## install packages
+The repository contains R package `metqc` for Quartet metabolism data QC.

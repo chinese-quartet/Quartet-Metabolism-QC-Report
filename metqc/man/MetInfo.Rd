@@ -5,7 +5,7 @@
 \alias{MetInfo}
 \title{Metabolite name mapping list.}
 \format{
-A \code{data.table} with 2 columns. 
+A \code{data.table} with 2 columns.
 \describe{
 \item{HMDBID}{A column indicates the IDs of metabolites.}
 \item{metabolites}{A column indicates the names of metabolites.}

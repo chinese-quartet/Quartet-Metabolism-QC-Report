@@ -1,16 +1,19 @@
-Package: MetQC
-Type: Package
+Package: metqc
 Title: Quartet-based QCtools for Metabolomics
 Version: 0.2.1
-Author: Naixin Zhang
-Maintainer: Naixin Zhang <nxzhang96@gmail.com>
+Authors@R: 
+    person("Naixin", "Zhang", email = "nxzhang96@gmail.com", role = c("aut", "cre"))
+Depends: R (>= 2.10)
+Imports:
+    data.table,
+    ggplot2,
+    dplyr,
+    officer,
+    flextable,
+    reshape2,
+    stringr
 Description: Quartet-based QCtools for metbolomics studies. 
-License: GPL-2
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: data.table, ggplot2, dplyr, officer, flextable, reshape2, stringr
-RoxygenNote: 7.2.3
-NeedsCompilation: no
-Packaged: 2021-06-02 02:50:39 UTC; zhangnaixin
-Depends: 
-    R (>= 2.10)
+RoxygenNote: 7.3.3

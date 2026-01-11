@@ -194,7 +194,7 @@ generate_met_report <- function(qc_result,
     
     # RC Plot
     body_add_break() %>%
-    body_add_par(value = "Correlation with Reference Datasets", style = "heading 2") %>%
+    body_add_par(value = "Pearson Correlation Coefficient", style = "heading 2") %>%
     body_add_gg(value = qc_result$scplot, style = "centered") %>%
     
     # 输出文件

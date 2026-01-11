@@ -342,7 +342,8 @@ count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
       x = "Ratios in reference datasets",
       y = "Measured ratios",
       color = "Sample pair",
-      title = sprintf("RC = %.3f", RC)
+      # title = sprintf("RC = %.3f", RC)
+      title = sprintf("PCC = %.3f", RC)
     ) +
     geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
     theme_bw() +

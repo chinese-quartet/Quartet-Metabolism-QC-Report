@@ -16,7 +16,10 @@ get_performance(dt_file = example_sample, metadata_file = example_metadata)
 get_performance()
 
 report_template <- system.file("extdata", "quartet_template.docx", package = "metqc")
+report_template
+
 
 ### get metabolomics metrics data and generate report
 met_result = get_performance(dt_file = example_sample, metadata_file = example_metadata)
-generate_met_report(qc_result = met_result, report_template = report_template,report_dir = './test/')
+
+generate_met_report(qc_result = met_result, report_template = report_template,report_dir = './test')

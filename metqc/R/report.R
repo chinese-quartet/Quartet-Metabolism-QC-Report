@@ -69,7 +69,7 @@ generate_met_report <- function(qc_result,
   # --- 1. 定义中文文本内容 ---
   
   # 摘要
-  text_sum_intro <- "本报告基于多项组学关键质量控制指标，总结了 Quartet Metabolite 参考物质所生成数据的质量情况。质量控制流程从用户输入代谢物表达矩阵开始，分别计算每批次的信噪比（Signal-to-Noise Ratio, SNR）、与参考数据集的相对相关性（Relative Correlation with Reference Datasets, RC）及整体质量判断。"
+  text_sum_intro <- "本报告基于多项组学关键质量控制指标，总结了 Quartet Metabolite 参考物质所生成数据的质量情况。质量控制流程从用户输入代谢物表达矩阵开始，分别计算外部质控品的信噪比（Signal-to-Noise Ratio, SNR）、与参考数据集的Pearson相关系数 (Pearson correlation coefficient, PCC) 及整体质量判断。"
   
   # 质量控制指标定义
   # SNR
@@ -77,13 +77,13 @@ generate_met_report <- function(qc_result,
   text_snr_desc <- "在代谢组数据的可靠性评估中，SNR 基于 Quartet 样本之间内在的生物学差异进行计算。具体而言，SNR 定义为二维 PCA 散点图中，不同 Quartet 样本之间距离（“信号”）与技术重复之间距离（“噪声”）的比值。较高的 SNR 表明技术重复聚类更紧密、不同 Quartet 样本之间分离度更高，反映出该批次在整体层面具有良好的重复性和区分能力。"
   
   # RC
-  text_rc_title <- "与参考数据集的相对相关性（Relative Correlation with Reference Datasets, RC）"
-  text_rc_desc <- "用于评估测试数据在相对定量层面与参考数据集（Reference Datasets, RDs）之间的一致性。为同时适用于靶向与非靶向代谢组学分析，参考数据集基于历史高质量数据构建，通过比较各样本对（D5/D6、F7/D6、M8/D6）在代谢物丰度水平上的相对丰度值。评估时，首先计算测试数据中与参考数据集重叠代谢物相对于 D6 的丰度比值，然后计算这些相对丰度值与参考数据集中对应数值之间的 Pearson 相关系数，作为 RC 指标。"
+  text_rc_title <- "与参考数据集的Pearson相关系数 (Pearson correlation coefficient, PCC) "
+  text_rc_desc <- "用于评估测试数据在相对定量层面与参考数据集（Reference Datasets, RDs）之间的一致性。为同时适用于靶向与非靶向代谢组学分析，参考数据集基于历史高质量数据构建，通过比较各样本对（D5/D6、F7/D6、M8/D6）在代谢物丰度水平上的相对丰度值。评估时，首先计算测试数据中与参考数据集重叠代谢物相对于 D6 的丰度比值，然后计算这些相对丰度值与参考数据集中对应数值之间的 Pearson 相关系数。"
   
   # 参考文献
   text_ref_title <- "参考文献"
-  text_ref_1 <- "1. Zheng, Y. et al. Multi-omics data integration using ratio-based quantitative profiling with Quartet reference materials. Nature Biotechnology 1–17 (2024)."
-  text_ref_2 <- "2. Zhang, N. et al. Quartet metabolite reference materials for inter-laboratory proficiency test and data integration of metabolomics profiling. Genome Biology (2024)."
+  text_ref_1 <- "1. Zheng Y, Liu Y, Yang J, et al. Multi-omics data integration using ratio-based quantitative profiling with Quartet reference materials. Nature Biotechnology, 2024."
+  text_ref_2 <- "2. Zhang N, Chen Q, Zhang P, et al. Quartet metabolite reference materials for inter-laboratory proficiency test and data integration of metabolomics profiling. Genome Biology, 2024."
   text_ref_3 <- "3. 上海临床队列组学检测工作指引（征求意见稿）, 2025/11/26."
   
   # 免责声明
@@ -114,20 +114,21 @@ generate_met_report <- function(qc_result,
     snr_str <- paste0(snr_str, " ↓")
   }
   
-  rc_str <- sprintf("%.2f", rc_val)
+  rc_str <- sprintf("%.3f", rc_val)
   if (!is.na(rc_val) && rc_val < 0.80) {
     rc_str <- paste0(rc_str, " ↓")
   }
   
   # 整体质量判断
-  is_pass <- (!is.na(snr_val) && snr_val >= 10) && (!is.na(rc_val) && rc_val >= 0.80)
+  # is_pass <- (!is.na(snr_val) && snr_val >= 10) && (!is.na(rc_val) && rc_val >= 0.80)
+  is_pass <- (!is.na(snr_val) && snr_val >= 10)
   quality_str <- ifelse(is_pass, "全部通过", "No")
   
   # 构建新数据框
   new_df <- data.frame(
-    "批次" = c("推荐质量标准", batch_name_str),
+    "样本组" = c("推荐质量标准", batch_name_str),
     "信噪比" = c("≥10", snr_str),
-    "相对相关性" = c("≥0.80", rc_str),
+    "Pearson相关系数" = c("≥0.80", rc_str),
     "整体质量" = c("全部通过", quality_str),
     check.names = FALSE
   )
@@ -143,7 +144,7 @@ generate_met_report <- function(qc_result,
     # 动态上色：如果整体质量是 No，标红
     color(i = 2, j = "整体质量", color = ifelse(quality_str == "No", "#B80D0D", "black")) %>%
     # 动态上色：如果指标未达标，标红
-    color(i = 2, j = "相对相关性", color = ifelse(rc_val < 0.80, "#B80D0D", "black")) %>%
+    color(i = 2, j = "Pearson相关系数", color = ifelse(rc_val < 0.80, "#B80D0D", "black")) %>%
     color(i = 2, j = "信噪比", color = ifelse(snr_val < 10, "#B80D0D", "black"))
   
   

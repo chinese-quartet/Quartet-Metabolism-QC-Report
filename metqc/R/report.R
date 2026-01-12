@@ -106,7 +106,7 @@ generate_met_report <- function(qc_result,
   rc_val  <- as.numeric(rc_row$Value)
   
   # 定义判断逻辑 (参考标准: SNR >= 10, RC >= 0.80)
-  batch_name_str <- "Queried_Data"
+  batch_name_str <- "Query_data"
   
   # 格式化显示字符串 (如果未达标，添加向下箭头 ↓)
   snr_str <- sprintf("%.2f", snr_val)

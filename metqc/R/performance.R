@@ -179,7 +179,7 @@ count_snr <- function(dt_file, metadata_file, output_dir = NULL) {
   dt.num.0 <- dt[, ..cols]
   dt.num.0[dt.num.0 == 0] <- NA
   dt.num.log2 <- apply(dt.num.0, 2, function(x) log2(x))
-  dt.num.t.cp <- t(data.frame(dt.num.log2[complete.cases(dt.num.log2), ]))
+  dt.num.t.cp <- t(data.frame(dt.num.log2[complete.cases(dt.num.log2), ], check.names = FALSE))
 
   pca_prcomp <- prcomp(x = dt.num.t.cp, scale. = T)
 

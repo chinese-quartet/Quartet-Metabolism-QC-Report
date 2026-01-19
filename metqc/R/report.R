@@ -116,7 +116,7 @@ generate_met_report <- function(qc_result,
   
   rc_str <- sprintf("%.3f", rc_val)
   if (!is.na(rc_val) && rc_val < 0.80) {
-    rc_str <- paste0(rc_str, " ↓")
+    # rc_str <- paste0(rc_str, " ↓")
   }
   
   # 整体质量判断
@@ -129,7 +129,7 @@ generate_met_report <- function(qc_result,
     "样本组" = c("推荐质量标准", batch_name_str),
     "信噪比" = c("≥10", snr_str),
     "Pearson相关系数" = c("≥0.80", rc_str),
-    "整体质量" = c("全部通过", quality_str),
+    "是否通过" = c("-", quality_str),
     check.names = FALSE
   )
   
@@ -142,9 +142,9 @@ generate_met_report <- function(qc_result,
     bold(i = 1, part = "body") %>%                    # 第一行(推荐标准)加粗
     bg(part = "header", bg = "#EFEFEF") %>%           # 表头背景色
     # 动态上色：如果整体质量是 No，标红
-    color(i = 2, j = "整体质量", color = ifelse(quality_str == "No", "#B80D0D", "black")) %>%
+    color(i = 2, j = "是否通过", color = ifelse(quality_str == "No", "#B80D0D", "black")) %>%
     # 动态上色：如果指标未达标，标红
-    color(i = 2, j = "Pearson相关系数", color = ifelse(rc_val < 0.80, "#B80D0D", "black")) %>%
+    # color(i = 2, j = "Pearson相关系数", color = ifelse(rc_val < 0.80, "#B80D0D", "black")) %>%
     color(i = 2, j = "信噪比", color = ifelse(snr_val < 10, "#B80D0D", "black"))
   
   

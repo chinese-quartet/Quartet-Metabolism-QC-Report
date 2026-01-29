@@ -6,9 +6,12 @@ devtools::document()
 library(metqc)
 
 ### get example data and reprot template path
-example_sample <- system.file("extdata", "sample_data.csv", package = "metqc")
-example_metadata <- system.file("extdata", "sample_metadata.csv", package = "metqc")
-example_sample
+# example_sample <- system.file("extdata", "sample_data.csv", package = "metqc")
+# example_metadata <- system.file("extdata", "sample_metadata.csv", package = "metqc")
+
+example_sample <- './inst/Metabolite_sample_data.csv'
+example_metadata <- './inst/Metabolite_sample_metadata.csv'
+
 example_metadata
 ## Get performance report for metabolomics data
 get_performance(dt_file = example_sample, metadata_file = example_metadata)

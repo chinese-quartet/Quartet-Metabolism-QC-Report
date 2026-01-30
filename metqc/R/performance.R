@@ -19,7 +19,7 @@ get_performance <- function(dt_file, metadata_file, output_dir = NULL) {
   # --- [新增] Metadata 列名转小写 ---
   names(metadata) <- tolower(names(metadata))
   # --------------------------------
-  
+
   metadata <- metadata[metadata$sample %in% c("D5", "D6", "F7", "M8"), ]
   cols <- c("metabolites", "HMDBID", metadata$col_names)
 
@@ -177,11 +177,11 @@ get_performance <- function(dt_file, metadata_file, output_dir = NULL) {
 count_snr <- function(dt_file, metadata_file, output_dir = NULL) {
   dt <- map_hmdb_id(dt_file)
   metadata <- fread(metadata_file)
-  
+
   # --- [新增] Metadata 列名转小写 ---
   names(metadata) <- tolower(names(metadata))
   # --------------------------------
-  
+
   cols <- metadata$col_names
   setkey(setDT(metadata), col_names)
   dt.num.0 <- dt[, ..cols]
@@ -291,7 +291,7 @@ count_snr <- function(dt_file, metadata_file, output_dir = NULL) {
 count_rc <- function(dt_file, metadata_file, output_dir = NULL) {
   dt <- map_hmdb_id(dt_file)
   metadata <- fread(metadata_file)
-  
+
   # --- [新增] Metadata 列名转小写 ---
   names(metadata) <- tolower(names(metadata))
   # --------------------------------
@@ -400,7 +400,7 @@ count_recall <- function(dt_file, metadata_file) {
   # --- [新增] Metadata 列名转小写 ---
   names(metadata) <- tolower(names(metadata))
   # --------------------------------
-  
+
   cols <- metadata$col_names
   setkey(setDT(metadata), col_names)
 

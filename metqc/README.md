@@ -16,8 +16,8 @@ devtools::install_github("chinese-quartet/quartet-metabolism-qc", subdir="metqc"
 ```R
 library(metqc)
 ### get example data and reprot template path
-example_sample <- system.file("extdata", "sample_data.csv", package = "metqc")
-example_metadata <- system.file("extdata", "sample_metadata.csv", package = "metqc")
+sample_data <- system.file("extdata", "sample_data.csv", package = "metqc")
+sample_metadata <- system.file("extdata", "sample_metadata.csv", package = "metqc")
 
 ## Get performance report for metabolomics data
 get_performance(dt_file = sample_data, metadata_file = sample_metadata)

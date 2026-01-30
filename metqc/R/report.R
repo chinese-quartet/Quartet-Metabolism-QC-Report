@@ -35,9 +35,11 @@
 #' @importFrom officer read_docx
 #'
 #' @examples
-#' # 加载示例 qc_result 对象
-#' qc_result_path <- system.file("extdata", "qc_result_example.RData", package = "metqc")
-#' load(qc_result_path)
+#' sample_data <- system.file("extdata", "sample_data.csv", package = "metqc")
+#' sample_metadata <- system.file("extdata", "sample_metadata.csv", package = "metqc")
+#'
+#' # Get performance report for metabolomics data
+#' met_result <- get_performance(dt_file = sample_data, metadata_file = sample_metadata)
 #'
 #' # 指定包内文档的路径
 #' report_template <- system.file("extdata", "quartet_template.docx", package = "metqc")

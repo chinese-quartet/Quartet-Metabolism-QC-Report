@@ -1,3 +1,3 @@
-# Quartet Metabolism QC
+# METQC
 
-The repository contains R package `metqc` for Quartet metabolism data QC.
+The repository contains R package `metqc` for Quartet metabolomics quality control.
